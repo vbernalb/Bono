@@ -5,6 +5,7 @@
  */
 package parcial2;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -19,10 +20,21 @@ public class Universidad {
         this.sedes = new ArrayList();
     }
     
-    public void addSede(Sede sede){
-        sedes.add(sede);
+    public boolean addSede(Sede sede){
+        return sedes.add(sede);
     }
     
+    public void verprog(){
+        for (Sede sede : sedes) {
+            sede.prog();
+        }
+    }
     
+    public void verinfo(){
+        for (Sede sede : sedes) {
+            System.out.println(sede.toString());
+            
+        }
+    }
     
 }

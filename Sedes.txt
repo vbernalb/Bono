@@ -1,5 +1,6 @@
-P, Unal, cra 30, 09876, 1000, 30
-Sistemas, Matematicas, Industrial, Fisica
-T, bb, calla 100, 1234, 200, 1000
-Gestion Ambiental, Mantenimiento de computadores
-E, cc, cra 73, 5678, 200, Gestion Ambiental
+P,Unal,cra 30,09876,1000,30,
+Sistemas: Programa orientado al desarrollo de software, Matematicas: prepara estudiates capacitados, Industrial: blablabla, Fisica: mis heroes,#,
+E,cc,cra 73,5678,200,30,
+Papitas,#,
+T,bb,calla 100,1234,200,1000,
+Gestion Ambiental, Mantenimiento de computadores,#,

@@ -14,9 +14,10 @@ import java.util.ArrayList;
 public class EContinuada extends Sede {
 
     private String CPopular;
-    private ArrayList <Estudiante> estudiantes = new ArrayList();
+    private ArrayList <Estudiante> estudiantes;
+    private ArrayList <ProgramaF> programas; 
 
-    public EContinuada(String Nombre, String Direccion, int Telefono, double Area, String cpopular) {
+    public EContinuada(String Nombre, String Direccion, int Telefono, int Area, String cpopular) {
         super(Nombre, Direccion, Telefono, Area);
         this.CPopular = cpopular;
     }

@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class Profesional extends Sede {
 
     private int NPACalidad;
-    private ArrayList <Estudiante> estudiantes = new ArrayList();
 
-    public Profesional(String Nombre, String Direccion, int Telefono, double Area , int npacalidad) {
+
+    public Profesional(String Nombre, String Direccion, int Telefono, int Area , int npacalidad) {
         super(Nombre, Direccion, Telefono, Area);
         this.NPACalidad = npacalidad;
+
     }  
     
     @Override

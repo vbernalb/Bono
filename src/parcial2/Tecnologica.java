@@ -15,9 +15,9 @@ public class Tecnologica extends Sede {
 
     
     private int NEstudiantes;
-    private ArrayList <Estudiante> estudiantes = new ArrayList();
+
     
-    public Tecnologica(String Nombre, String Direccion, int Telefono, double Area, int nestudiantes) {
+    public Tecnologica(String Nombre, String Direccion, int Telefono, int Area, int nestudiantes) {
         super(Nombre, Direccion, Telefono, Area);
         this.NEstudiantes= nestudiantes;
     }

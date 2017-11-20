@@ -12,5 +12,17 @@ package parcial2;
 public class ProgramaF {
     
     private String Nombre;
-    private String Descripcion;
+
+
+    public ProgramaF(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "ProgramaF{" + "Nombre=" + Nombre + '}';
+    }
+
+
+    
 }

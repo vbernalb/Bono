@@ -6,6 +6,7 @@
 package parcial2;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import parcial2.Sede;
 
@@ -15,7 +16,6 @@ import parcial2.Sede;
  */
 public class Logic {
     
-    private Sede sede;
     private Universidad un;
 
     public Logic() {
@@ -23,65 +23,134 @@ public class Logic {
     }
     
     
-
-    public void loadFile(String path) throws FileNotFoundException {
+    public int cambiar(String a){ // PASA DE STRING A ENTERO
+        Integer b = 0;
+        int nuevo = b.parseInt(a);
+        return nuevo;
+    }
+    
+  
+    
+    public void loadFile(String path) throws FileNotFoundException, IOException{ 
       File read = new File(path);
       Scanner flow = new Scanner(read);
       flow.useDelimiter(",");
       String type = null;
       String Nombre = null;
       String Direccion = null;
-      int Telefono = 0;
-      double Area = 0;
+      String Telefono = null;
+      String Area = null;
       
-      int PAC = 0; //PARA PROFESIONAL
-      int NE = 0; //PARA TECOLOGICA
+      String PAC = null; //PARA PROFESIONAL
+      String NE = null; //PARA TECOLOGICA
       String CP = null; //PARA ECONTINUADA
       
-      while (flow.hasNextLine()) {              
+      while (flow.hasNextLine()) {
          type = flow.next();
-         if(type.equals("P")){
-             Nombre = flow.next();
-             Direccion = flow.next();
-             Telefono = flow.nextInt();
-             Area = flow.nextDouble();
-             PAC = flow.nextInt();
-             sede = new Profesional(Nombre, Direccion, Telefono, Area, PAC);
-             un.addSede(sede);
+          System.out.println(type + " ESTA ES LA LETRA DE LA SEDE");
+          
+          if(type.equals("P") || type.equals("T") || type.equals("E")){
+
+             if(type.equals("P")){
+            System.out.println("entrooo1");
+            Nombre = flow.next();
+            Direccion = flow.next();
+            Telefono = flow.next();
+            int tel = cambiar(Telefono);
+            Area = flow.next();
+            int area = cambiar(Area);
+            PAC = flow.next();
+            int pac = cambiar(PAC);
+            Profesional p = new Profesional(Nombre, Direccion, tel, area, pac);
+            
+            flow.nextLine();
+            while(flow.hasNext()){
+                String prog = flow.next();
+                if(prog.equals("#")){
+                    break;
+                }else{
+                    p.APrograma(prog);
+                    System.out.println(prog);
+                }
+            }
+            flow.nextLine();
+            un.addSede(p);
+
+
              
-             
+            } if(type.equals("T")){
+                System.out.println("entrooo2");
+               Nombre = flow.next();
+               Direccion = flow.next();
+               Telefono = flow.next();
+               int tel = cambiar(Telefono);
+               Area = flow.next();
+               int area = cambiar(Area);
+               NE = flow.next();
+               int ne = cambiar(NE);
+                Tecnologica t = new Tecnologica(Nombre, Direccion, tel, area, ne);
+
+                
+                flow.nextLine();
+                while(flow.hasNext()){
+                    String prog = flow.next();
+                    if(prog.equals("#")){
+                        break;
+                    }else{
+                        t.APrograma(prog);
+                        System.out.println(prog);
+                    }
+                }
+                flow.nextLine();
+                un.addSede(t);
+
+            }if(type.equals("E")){
+                System.out.println("entrooo3");
+               Nombre = flow.next();
+               Direccion = flow.next();
+               Telefono = flow.next();
+               int tel = cambiar(Telefono);
+               Area = flow.next();
+               int area = cambiar(Area);
+               CP = flow.next();
+                EContinuada e = new EContinuada(Nombre, Direccion, tel, area, CP);
+                
+                flow.nextLine();
+                while(flow.hasNext()){
+                    String prog = flow.next();
+                    if(prog.equals("#")){
+                        break;
+                    }else{
+                        e.APrograma(prog);
+                        System.out.println(prog);
+                    }
+                }
+                flow.nextLine();
+                un.addSede(e);
          }
-         if(type.equals("T")){
-             Nombre = flow.next();
-             Direccion = flow.next();
-             Telefono = flow.nextInt();
-             Area = flow.nextDouble();
-             NE = flow.nextInt();
-             sede = new Tecnologica(Nombre, Direccion, Telefono, Area, NE);
-             un.addSede(sede);
-         }
-         if(type.equals("E")){
-             Nombre = flow.next();
-             Direccion = flow.next();
-             Telefono = flow.nextInt();
-             Area = flow.nextDouble();
-             CP = flow.next();
-             sede = new EContinuada(Nombre, Direccion, Telefono, Area, CP);
-             un.addSede(sede);
-         }
-         //Procesar y Crear Objetos
-          System.out.println(type);
+            
+
+            
+            
+          }else{
+              if(flow.hasNextLine()){
+              flow.nextLine();
+              }else{
+                  break;
+              }
+          }
        }
     }
     
     
-    public void listar (String path) throws FileNotFoundException{ //PERMITE LISTAR TODOS LOS ELEMENTOS DEL ARCHIVO, Y POR TANTO, DE TODAS LAS SEDES
-        Scanner leer = new Scanner(path);
-        String dato = null;
+    public String darInformacion(String path) throws FileNotFoundException{ //PERMITE LISTAR TODOS LOS ELEMENTOS DEL ARCHIVO, Y POR TANTO, DE TODAS LAS SEDES
+        File file = new File(path);
+        Scanner leer = new Scanner(file);
+        String dato = "";
         while(leer.hasNextLine()){
-            dato = leer.nextLine();
-            System.out.println(dato);
+            dato += leer.nextLine() + "\n";
         }
+        return dato;
     }
     
 }
